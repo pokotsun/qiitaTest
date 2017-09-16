@@ -13,12 +13,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main) // mainアクティビティをセット
 
         val listAdapter = ArticleListAdapter(applicationContext)
-        listAdapter.articles = listOf(dummyArticle("Kotlin入門", "太郎"),
-                dummyArticle("Java入門", "次郎"))
+        listAdapter.articles = listOf(dummyArticle("Kotlin入門", "ひろき"),
+                dummyArticle("Java入門", "まなみ"))
 
         val listView: ListView = findViewById(R.id.list_view) as ListView
 
         listView.adapter = listAdapter
+        listView.setOnItemClickListener { adapterView, view, position, id ->
+            val article = listAdapter.articles[position]
+            // intent(this, article) まででArticleActivityのintentを設定、生成
+            ArticleActivity.intent(this, article).let {startActivity(it)}
+        }
 
 
     }
@@ -28,4 +33,5 @@ class MainActivity : AppCompatActivity() {
                     title = title,
                     url = "https://kotlinlang.org/",
                     user = User(id = "", name = userName, profileImageUrl = ""))
+
 }
