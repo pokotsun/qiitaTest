@@ -5,7 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.webkit.WebChromeClient
 import android.webkit.WebView
+import android.webkit.WebViewClient
+import android.widget.ProgressBar
 import com.example.pokotsun.qiitaclient.model.Article
 import com.example.pokotsun.qiitaclient.view.ArticleView
 
@@ -31,7 +34,6 @@ class ArticleActivity  : AppCompatActivity() {
 
         val article: Article = intent.getParcelableExtra(ARTICLE_EXTRA)
         articleView.setArticle(article)
-        Log.d("あいうえお", article.url)
         webView.loadUrl(article.url)
 
     }
